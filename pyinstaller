@@ -1,1 +1,1 @@
-pyinstaller -Fw --i icon.ico FrameRenamer.py
+pyinstaller -Fw -i icon.ico -n FrameRenamerV1.0.0 FrameRenamer.py

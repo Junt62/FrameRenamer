@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='FrameRenamer',
+    name='FrameRenamerV1.0.0',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
