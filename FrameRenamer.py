@@ -45,6 +45,7 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
             self.toolPackage.tint("已拖入文件夹：" + self.folder)
 
             self.updateLineEdit2()
+            self.toolPackage.generateBackupFolder(self.path, self.folder)
 
             imagesWithIndex = []
             for i, k in enumerate(self.images):
@@ -94,7 +95,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         self.images = self.toolPackage.findImages(self.path)
         self.lineEdit_2.setText(f"{self.images}")
         self.toolPackage.generatePreviewText(self.folder, self.images)
-        self.toolPackage.generateBackupFolder(self.path, self.folder)
 
 
 class ToolPackage:
