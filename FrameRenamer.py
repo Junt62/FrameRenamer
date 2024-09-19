@@ -76,7 +76,8 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
     def pressedPushButton3(self):
         self.toolPackage.tint("打开备份文件夹")
-        os.startfile(os.path.dirname(__file__))
+        path = os.path.join(os.path.dirname(__file__), backupFolder)
+        os.startfile(path)
 
     def checkBoxChanged(self, state):
         if state:
