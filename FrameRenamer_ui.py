@@ -78,7 +78,7 @@ class Ui_Form(object):
     # setupUi
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"\u5e8f\u5217\u5e27\u6279\u91cf\u91cd\u547d\u540d\u5de5\u5177", None))
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"\u5e8f\u5217\u5e27\u91cd\u547d\u540d\u5de5\u5177", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"\u6267\u884c\u91cd\u547d\u540d", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u5f53\u524d\u6587\u4ef6\u5939\u5730\u5740\uff1a", None))
         self.pushButton_2.setText(QCoreApplication.translate("Form", u"\u67e5\u770b\u9884\u89c8", None))

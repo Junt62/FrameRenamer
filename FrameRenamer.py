@@ -2,16 +2,15 @@ from datetime import datetime
 import os
 import re
 import shutil
-import sys
-import random
 from PySide6 import QtCore, QtWidgets, QtGui
 
 from FrameRenamer_ui import Ui_Form
 
-
+title = "序列帧重命名工具v1.0.3@zijun"
 previewText = "重命名预览.txt"
+backupFolder = "backup"
 backupSuffix = "_备份"
-extensions = (".png", ".jpg", ".bmp")
+extensions = ".png", ".jpg", ".bmp"
 
 
 class MainForm(QtWidgets.QMainWindow, Ui_Form):
@@ -29,9 +28,8 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         self.toolPackage = ToolPackage(self)
 
         self.toolPackage.tint("请直接拖入含有图片的文件夹")
-        self.toolPackage.tint("软件会自动执行备份，支持png，jpg，bmp")
-        self.toolPackage.tint("当点击执行重命名时，会将文件夹内图片替换为")
-        self.toolPackage.tint("文件夹名+000的递增数字")
+        self.toolPackage.tint("支持png，jpg，bmp")
+        self.toolPackage.tint("关闭软件时，会自动清空备份")
 
     def dragEnterEvent(self, event: QtGui.QDragMoveEvent):
         if event.mimeData().hasUrls():
@@ -65,14 +63,16 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
             self.updateLineEdit2()
             self.toolPackage.generatePreviewText(self.folder, self.images)
-
-            # print(old + " -> " + new)
+        else:
+            self.toolPackage.tint("未设置目标路径！")
 
     def pressedPushButton2(self):
-        self.toolPackage.tint("查看重命名预览")
         path = os.path.join(os.path.dirname(__file__), previewText)
         if os.path.exists(path):
+            self.toolPackage.tint("查看重命名预览")
             os.startfile(path)
+        else:
+            self.toolPackage.tint("未生成重命名预览，请先拖入文件夹")
 
     def pressedPushButton3(self):
         self.toolPackage.tint("打开备份文件夹")
@@ -151,7 +151,9 @@ class ToolPackage:
                 file.write(k + " -> " + new + "\n")
 
     def generateBackupFolder(self, path, folder):
-        target = os.path.join(os.path.dirname(__file__), folder + backupSuffix)
+        target = os.path.join(
+            os.path.dirname(__file__), backupFolder, folder + backupSuffix
+        )
 
         if os.path.exists(target):
             shutil.rmtree(target)
@@ -162,6 +164,6 @@ class ToolPackage:
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     widget = MainForm()
-    widget.setWindowTitle("序列帧重命名工具v1.0.2@zijun")
+    widget.setWindowTitle(title)
     widget.show()
     app.exec()
