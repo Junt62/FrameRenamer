@@ -69,15 +69,18 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
     def pressedPushButton2(self):
         path = os.path.join(os.path.dirname(__file__), previewText)
         if os.path.exists(path):
-            self.toolPackage.tint("查看重命名预览")
             os.startfile(path)
+            self.toolPackage.tint("查看重命名预览")
         else:
-            self.toolPackage.tint("未生成重命名预览，请先拖入文件夹")
+            self.toolPackage.tint("无重命名预览")
 
     def pressedPushButton3(self):
-        self.toolPackage.tint("打开备份文件夹")
         path = os.path.join(os.path.dirname(__file__), backupFolder)
-        os.startfile(path)
+        if os.path.exists(path):
+            os.startfile(path)
+            self.toolPackage.tint("打开备份文件夹")
+        else:
+            self.toolPackage.tint("无备份文件夹")
 
     def checkBoxChanged(self, state):
         if state:
