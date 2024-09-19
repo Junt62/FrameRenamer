@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>贪玩-序列帧批量重命名工具</string>
+   <string>序列帧批量重命名工具</string>
   </property>
   <property name="windowIcon">
    <iconset resource="FrameRenamer.qrc">

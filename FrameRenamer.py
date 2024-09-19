@@ -58,10 +58,9 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
     def pressedPushButton1(self):
         if self.lineEdit.text().strip():
-            files = os.listdir(self.path)
             images = self.toolPackage.findImages(self.path)
 
-            self.toolPackage.renameImages(images)
+            self.toolPackage.renameImages(self.path, self.folder, images)
             self.toolPackage.tint("执行重命名完成！")
 
             self.updateLineEdit2()
@@ -121,24 +120,24 @@ class ToolPackage:
         return images
 
     def findImages(self, path):
-        images = []
+        imagesSource = os.listdir(path)
 
-        imageSource = os.listdir(path)
-        iamgeSourceSorted = sorted(imageSource, key=self.sortImages)
-
-        for image in iamgeSourceSorted:
+        imagesFiltered = []
+        for image in imagesSource:
             if image.lower().endswith(extensions):
-                images.append(image)
+                imagesFiltered.append(image)
 
-        return images
+        iamgesSorted = sorted(imagesFiltered, key=self.sortImages)
 
-    def renameImages(self, images):
+        return iamgesSorted
+
+    def renameImages(self, path, folder, images):
         for i, k in enumerate(images):
             num = f"{i:03}"
             dot = k.rfind(".")
-            old = os.path.join(self.path, images[i])
+            old = os.path.join(path, images[i])
             old = old.replace("\\", "/")
-            new = os.path.join(self.path, self.folder + num + k[dot:])
+            new = os.path.join(path, folder + num + k[dot:])
             new = new.replace("\\", "/")
             os.rename(old, new)
 
@@ -163,6 +162,6 @@ class ToolPackage:
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     widget = MainForm()
-    widget.setWindowTitle("贪玩-序列帧重命名工具v1.0.1@zijun")
+    widget.setWindowTitle("序列帧重命名工具v1.0.2@zijun")
     widget.show()
     app.exec()
