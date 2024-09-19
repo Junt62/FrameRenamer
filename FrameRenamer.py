@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+import re
 import shutil
 import sys
 import random
@@ -10,6 +11,7 @@ from FrameRenamer_ui import Ui_Form
 
 previewText = "重命名预览.txt"
 backupSuffix = "_备份"
+extensions = (".png", ".jpg", ".bmp")
 
 
 class MainForm(QtWidgets.QMainWindow, Ui_Form):
@@ -41,60 +43,65 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
             self.path = urls[0].toLocalFile()
             self.folder = os.path.basename(self.path)
 
-            self.lineEdit.setText(self.path)
-            self.toolPackage.tint("已拖入文件夹：" + self.folder)
+            self.updateLineEdit1()
 
             self.updateLineEdit2()
-            self.toolPackage.generateBackupFolder(self.path, self.folder)
 
-            imagesWithIndex = []
-            for i, k in enumerate(self.images):
-                num = f"{i:03}"
-                dot = k.rfind(".")
-                new = self.folder + num + k[dot:]
-                imagesWithIndex.append(new)
-            self.lineEdit_3.setText(f"{imagesWithIndex}")
+            self.updateLineEdit3()
+
+            self.toolPackage.generatePreviewText(self.folder, self.images)
+
+            self.toolPackage.generateBackupFolder(self.path, self.folder)
 
             if self.checkBox.isChecked():
                 self.pressedPushButton1()
 
     def pressedPushButton1(self):
         if self.lineEdit.text().strip():
+            files = os.listdir(self.path)
             images = self.toolPackage.findImages(self.path)
-            for i, k in enumerate(images):
-                num = f"{i:03}"
-                dot = k.rfind(".")
-                old = os.path.join(self.path, images[i])
-                old = old.replace("\\", "/")
-                new = os.path.join(self.path, self.folder + num + k[dot:])
-                new = new.replace("\\", "/")
-                os.rename(old, new)
 
+            self.toolPackage.renameImages(images)
             self.toolPackage.tint("执行重命名完成！")
+
             self.updateLineEdit2()
+            self.toolPackage.generatePreviewText(self.folder, self.images)
+
             # print(old + " -> " + new)
 
     def pressedPushButton2(self):
-        # self.toolPackage.tint("查看重命名预览")
+        self.toolPackage.tint("查看重命名预览")
         path = os.path.join(os.path.dirname(__file__), previewText)
         if os.path.exists(path):
             os.startfile(path)
 
     def pressedPushButton3(self):
-        # self.toolPackage.tint("打开备份文件夹")
+        self.toolPackage.tint("打开备份文件夹")
         os.startfile(os.path.dirname(__file__))
 
     def checkBoxChanged(self, state):
-        # if state:
-        #     self.toolPackage.tint("启用自动执行重命名，拖入文件夹执行")
-        # else:
-        #     self.toolPackage.tint("禁用自动执行")
+        if state:
+            self.toolPackage.tint("启用自动执行")
+        else:
+            self.toolPackage.tint("禁用自动执行")
         pass
+
+    def updateLineEdit1(self):
+        self.toolPackage.tint("已拖入文件夹：" + self.folder)
+        self.lineEdit.setText(self.path)
 
     def updateLineEdit2(self):
         self.images = self.toolPackage.findImages(self.path)
         self.lineEdit_2.setText(f"{self.images}")
-        self.toolPackage.generatePreviewText(self.folder, self.images)
+
+    def updateLineEdit3(self):
+        imagesNewName = []
+        for i, k in enumerate(self.images):
+            num = f"{i:03}"
+            dot = k.rfind(".")
+            new = self.folder + num + k[dot:]
+            imagesNewName.append(new)
+        self.lineEdit_3.setText(f"{imagesNewName}")
 
 
 class ToolPackage:
@@ -107,13 +114,33 @@ class ToolPackage:
         form.insertPlainText(f"【{time}】{text}\n")
         form.moveCursor(QtGui.QTextCursor.End)
 
+    def sortImages(self, images):
+        match = re.search(r"(\d+)", images)
+        if match:
+            return int(match.group(1))
+        return images
+
     def findImages(self, path):
-        extensions = (".png", ".jpg", ".bmp")
         images = []
-        for image in os.listdir(path):
+
+        imageSource = os.listdir(path)
+        iamgeSourceSorted = sorted(imageSource, key=self.sortImages)
+
+        for image in iamgeSourceSorted:
             if image.lower().endswith(extensions):
                 images.append(image)
+
         return images
+
+    def renameImages(self, images):
+        for i, k in enumerate(images):
+            num = f"{i:03}"
+            dot = k.rfind(".")
+            old = os.path.join(self.path, images[i])
+            old = old.replace("\\", "/")
+            new = os.path.join(self.path, self.folder + num + k[dot:])
+            new = new.replace("\\", "/")
+            os.rename(old, new)
 
     def generatePreviewText(self, folder, images):
         path = os.path.join(os.path.dirname(__file__), previewText)
@@ -136,6 +163,6 @@ class ToolPackage:
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     widget = MainForm()
-    widget.setWindowTitle("贪玩-序列帧重命名工具v1.0.0@zijun")
+    widget.setWindowTitle("贪玩-序列帧重命名工具v1.0.1@zijun")
     widget.show()
     app.exec()
