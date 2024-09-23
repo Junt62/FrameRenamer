@@ -65,6 +65,7 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
             self.toolPackage.tint("执行重命名完成！")
 
             self.updateLineEdit2()
+            self.updateLineEdit3()
             self.toolPackage.generatePreviewText(self.path, self.images)
         else:
             self.toolPackage.tint("未设置目标路径！")
@@ -126,6 +127,9 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
     def pressedPushButton6(self):
         if self.lineEdit.text().strip():
             self.toolPackage.extractSubfolders(self.path)
+
+            self.updateLineEdit2()
+            self.updateLineEdit3()
             self.toolPackage.tint("提取所有子文件夹图片")
         else:
             self.toolPackage.tint("未设置目标路径！")
@@ -133,6 +137,9 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
     def pressedPushButton7(self):
         if self.lineEdit.text().strip():
             self.toolPackage.deleteSubfolders(self.path)
+
+            self.updateLineEdit2()
+            self.updateLineEdit3()
             self.toolPackage.tint("删除所有子文件夹")
         else:
             self.toolPackage.tint("未设置目标路径！")
