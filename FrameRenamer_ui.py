@@ -58,16 +58,6 @@ class Ui_Form(object):
 
         self.gridLayout_4.addWidget(self.pushButton, 0, 0, 1, 1)
 
-        self.pushButton_2 = QPushButton(self.groupBox_2)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-
-        self.gridLayout_4.addWidget(self.pushButton_2, 0, 1, 1, 2)
-
-        self.pushButton_3 = QPushButton(self.groupBox_2)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.gridLayout_4.addWidget(self.pushButton_3, 0, 3, 1, 1)
-
         self.checkBox = QCheckBox(self.groupBox_2)
         self.checkBox.setObjectName(u"checkBox")
 
@@ -83,15 +73,25 @@ class Ui_Form(object):
 
         self.gridLayout_4.addWidget(self.pushButton_5, 1, 1, 1, 1)
 
-        self.pushButton_6 = QPushButton(self.groupBox_2)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-
-        self.gridLayout_4.addWidget(self.pushButton_6, 1, 2, 1, 2)
-
         self.pushButton_7 = QPushButton(self.groupBox_2)
         self.pushButton_7.setObjectName(u"pushButton_7")
 
         self.gridLayout_4.addWidget(self.pushButton_7, 1, 4, 1, 1)
+
+        self.pushButton_2 = QPushButton(self.groupBox_2)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+
+        self.gridLayout_4.addWidget(self.pushButton_2, 0, 1, 1, 1)
+
+        self.pushButton_6 = QPushButton(self.groupBox_2)
+        self.pushButton_6.setObjectName(u"pushButton_6")
+
+        self.gridLayout_4.addWidget(self.pushButton_6, 1, 2, 1, 1)
+
+        self.pushButton_3 = QPushButton(self.groupBox_2)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+
+        self.gridLayout_4.addWidget(self.pushButton_3, 0, 2, 1, 1)
 
 
         self.gridLayout_3.addWidget(self.groupBox_2, 1, 0, 1, 1)
@@ -174,13 +174,13 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"\u5e8f\u5217\u5e27\u91cd\u547d\u540d\u5de5\u5177", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Form", u"\u56fe\u7247\u64cd\u4f5c", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"\u6267\u884c\u91cd\u547d\u540d", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Form", u"\u67e5\u770b\u91cd\u547d\u540d\u9884\u89c8", None))
-        self.pushButton_3.setText(QCoreApplication.translate("Form", u"\u6253\u5f00\u5907\u4efd\u6587\u4ef6\u5939", None))
         self.checkBox.setText(QCoreApplication.translate("Form", u"\u81ea\u52a8\u6267\u884c\u91cd\u547d\u540d", None))
         self.pushButton_4.setText(QCoreApplication.translate("Form", u"\u586b\u5145600\u5e27", None))
         self.pushButton_5.setText(QCoreApplication.translate("Form", u"\u586b\u5145360\u5e27", None))
-        self.pushButton_6.setText(QCoreApplication.translate("Form", u"\u63d0\u53d6\u5b50\u6587\u4ef6\u5939\u56fe\u7247", None))
         self.pushButton_7.setText(QCoreApplication.translate("Form", u"\u5220\u9664\u5b50\u6587\u4ef6\u5939", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Form", u"\u67e5\u770b\u91cd\u547d\u540d\u9884\u89c8", None))
+        self.pushButton_6.setText(QCoreApplication.translate("Form", u"\u63d0\u53d6\u5b50\u6587\u4ef6\u5939\u56fe\u7247", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Form", u"\u6253\u5f00\u5907\u4efd\u6587\u4ef6\u5939", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("Form", u"\u63d0\u793a\u4fe1\u606f", None))
         self.groupBox.setTitle(QCoreApplication.translate("Form", u"\u76ee\u6807\u9009\u62e9", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u6587\u4ef6\u5939\u8def\u5f84\uff1a", None))
