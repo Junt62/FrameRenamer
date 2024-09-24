@@ -60,7 +60,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         if self.lineEdit.text().strip():
             self.images = self.toolPackage.findImages(self.path)
             self.images = sorted(self.images, key=self.toolPackage.sortImages)
-
             self.toolPackage.renameImages(self.path, self.images)
             self.toolPackage.tint("执行重命名完成！")
 
@@ -96,6 +95,9 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
             else:
                 self.toolPackage.generateEmptyImagesFolder(600)
+                self.images = self.toolPackage.findImages(self.path)
+                self.images = sorted(self.images, key=self.toolPackage.sortImages)
+                self.toolPackage.renameImages5(self.path, self.images)
                 self.toolPackage.fillImages(self.path)
                 self.toolPackage.removeEmptyImagesFolder()
 
@@ -115,6 +117,9 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
             else:
                 self.toolPackage.generateEmptyImagesFolder(360)
+                self.images = self.toolPackage.findImages(self.path)
+                self.images = sorted(self.images, key=self.toolPackage.sortImages)
+                self.toolPackage.renameImages5(self.path, self.images)
                 self.toolPackage.fillImages(self.path)
                 self.toolPackage.removeEmptyImagesFolder()
 
@@ -202,6 +207,16 @@ class ToolPackage:
             old = os.path.join(path, images[i])
             old = old.replace("\\", "/")
             new = os.path.join(path, os.path.basename(path) + num + k[dot:])
+            new = new.replace("\\", "/")
+            os.rename(old, new)
+
+    def renameImages5(self, path, images):
+        for i, k in enumerate(images):
+            num = f"{i:05}"
+            dot = k.rfind(".")
+            old = os.path.join(path, images[i])
+            old = old.replace("\\", "/")
+            new = os.path.join(path, num + k[dot:])
             new = new.replace("\\", "/")
             os.rename(old, new)
 
