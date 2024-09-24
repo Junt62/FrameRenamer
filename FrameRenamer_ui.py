@@ -37,61 +37,15 @@ class Ui_Form(object):
         icon = QIcon()
         icon.addFile(u":/icon/icon.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         Form.setWindowIcon(icon)
-        self.gridLayout_2 = QGridLayout(Form)
-        self.gridLayout_2.setSpacing(0)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gridLayout_2.setContentsMargins(4, 4, 4, 4)
         self.tabWidget = QTabWidget(Form)
         self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setGeometry(QRect(4, 4, 492, 367))
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
         self.gridLayout_3 = QGridLayout(self.tab)
         self.gridLayout_3.setSpacing(2)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(4, 4, 4, 2)
-        self.groupBox = QGroupBox(self.tab)
-        self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setAutoFillBackground(True)
-        self.gridLayout = QGridLayout(self.groupBox)
-        self.gridLayout.setSpacing(2)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(4, 4, 4, 4)
-        self.label = QLabel(self.groupBox)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-
-        self.lineEdit = QLineEdit(self.groupBox)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setReadOnly(True)
-
-        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
-
-        self.label_2 = QLabel(self.groupBox)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-
-        self.lineEdit_2 = QLineEdit(self.groupBox)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setReadOnly(True)
-
-        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 1)
-
-        self.label_3 = QLabel(self.groupBox)
-        self.label_3.setObjectName(u"label_3")
-
-        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
-
-        self.lineEdit_3 = QLineEdit(self.groupBox)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-        self.lineEdit_3.setReadOnly(True)
-
-        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 1)
-
-
-        self.gridLayout_3.addWidget(self.groupBox, 0, 0, 1, 1)
-
         self.groupBox_2 = QGroupBox(self.tab)
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.groupBox_2.setAutoFillBackground(True)
@@ -160,13 +114,53 @@ class Ui_Form(object):
 
         self.gridLayout_3.addWidget(self.groupBox_3, 2, 0, 1, 1)
 
+        self.groupBox = QGroupBox(self.tab)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setAutoFillBackground(True)
+        self.gridLayout = QGridLayout(self.groupBox)
+        self.gridLayout.setSpacing(2)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(4, 4, 4, 4)
+        self.label = QLabel(self.groupBox)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+
+        self.lineEdit = QLineEdit(self.groupBox)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setReadOnly(True)
+
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
+
+        self.label_2 = QLabel(self.groupBox)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+
+        self.lineEdit_2 = QLineEdit(self.groupBox)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setReadOnly(True)
+
+        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 1)
+
+        self.label_3 = QLabel(self.groupBox)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+
+        self.lineEdit_3 = QLineEdit(self.groupBox)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.lineEdit_3.setReadOnly(True)
+
+        self.gridLayout.addWidget(self.lineEdit_3, 2, 1, 1, 1)
+
+
+        self.gridLayout_3.addWidget(self.groupBox, 0, 0, 1, 1)
+
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.tabWidget.addTab(self.tab_2, "")
-
-        self.gridLayout_2.addWidget(self.tabWidget, 0, 0, 1, 1)
-
 
         self.retranslateUi(Form)
 
@@ -178,10 +172,6 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"\u5e8f\u5217\u5e27\u91cd\u547d\u540d\u5de5\u5177", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Form", u"\u76ee\u6807\u9009\u62e9", None))
-        self.label.setText(QCoreApplication.translate("Form", u"\u6587\u4ef6\u5939\u8def\u5f84\uff1a", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"\u5f53\u524d\u6587\u4ef6\u540d\uff1a", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"\u76ee\u6807\u6587\u4ef6\u540d\uff1a", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Form", u"\u56fe\u7247\u64cd\u4f5c", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"\u6267\u884c\u91cd\u547d\u540d", None))
         self.pushButton_2.setText(QCoreApplication.translate("Form", u"\u67e5\u770b\u91cd\u547d\u540d\u9884\u89c8", None))
@@ -192,6 +182,10 @@ class Ui_Form(object):
         self.pushButton_6.setText(QCoreApplication.translate("Form", u"\u63d0\u53d6\u5b50\u6587\u4ef6\u5939\u56fe\u7247", None))
         self.pushButton_7.setText(QCoreApplication.translate("Form", u"\u5220\u9664\u5b50\u6587\u4ef6\u5939", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("Form", u"\u63d0\u793a\u4fe1\u606f", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Form", u"\u76ee\u6807\u9009\u62e9", None))
+        self.label.setText(QCoreApplication.translate("Form", u"\u6587\u4ef6\u5939\u8def\u5f84\uff1a", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"\u5f53\u524d\u6587\u4ef6\u540d\uff1a", None))
+        self.label_3.setText(QCoreApplication.translate("Form", u"\u76ee\u6807\u6587\u4ef6\u540d\uff1a", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Form", u"\u56fe\u7247\u5904\u7406", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("Form", u"\u5173\u4e8e", None))
     # retranslateUi
