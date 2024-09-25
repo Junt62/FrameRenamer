@@ -7,7 +7,7 @@ from PIL import Image
 
 from FrameRenamer_ui import Ui_Form
 
-title = "序列帧重命名工具v1.2.0.1@zijun"
+title = "序列帧重命名工具v1.2.0.2@zijun"
 previewText = "重命名预览.txt"
 backupFolder = "backup"
 backupSuffix = "_备份"
@@ -70,7 +70,7 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         else:
             self.toolPackage.tint("未设置目标路径！")
 
-    def pressedPushButton1(self):
+    def pressedPushButton8(self):
         if self.lineEdit.text().strip():
             self.images = self.toolPackage.findImages(self.path)
             self.images = sorted(self.images, key=self.toolPackage.sortImages)
