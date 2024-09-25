@@ -7,7 +7,7 @@ from PIL import Image
 
 from FrameRenamer_ui import Ui_Form
 
-title = "序列帧重命名工具v1.3.0.0@zijun"
+title = "序列帧重命名工具v1.3.0.1@zijun"
 previewText = "重命名预览.txt"
 backupFolder = "backup"
 backupSuffix = "_备份"
@@ -48,8 +48,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
             self.updateLineEdit2()
 
             self.updateLineEdit3()
-
-            self.toolPackage.generatePreviewText(self.path, self.images)
 
             self.toolPackage.generateBackupFolder(self.path)
 
@@ -163,6 +161,8 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
             new = os.path.basename(self.path) + num + k[dot:]
             imagesNew.append(new)
         self.lineEdit_3.setText(f"{imagesNew}")
+
+        self.toolPackage.generatePreviewText(self.path, self.images)
 
 
 class ToolPackage:
