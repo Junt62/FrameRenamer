@@ -97,27 +97,6 @@
         <property name="spacing">
          <number>2</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>执行重命名</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <widget class="QCheckBox" name="checkBox">
-          <property name="text">
-           <string>自动执行重命名</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>填充600帧</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
          <widget class="QPushButton" name="pushButton_5">
           <property name="text">
@@ -125,17 +104,17 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="4">
+        <item row="1" column="3">
          <widget class="QPushButton" name="pushButton_7">
           <property name="text">
            <string>删除子文件夹</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="pushButton_2">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton_4">
           <property name="text">
-           <string>查看重命名预览</string>
+           <string>填充600帧</string>
           </property>
          </widget>
         </item>
@@ -147,6 +126,27 @@
          </widget>
         </item>
         <item row="0" column="2">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>查看重命名预览</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton_8">
+          <property name="text">
+           <string>执行空白重命名</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>执行标准重命名</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
          <widget class="QPushButton" name="pushButton_3">
           <property name="text">
            <string>打开备份文件夹</string>
@@ -272,6 +272,19 @@
      <string>关于</string>
     </attribute>
    </widget>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>388</x>
+     <y>5</y>
+     <width>105</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>自动执行重命名</string>
+   </property>
   </widget>
  </widget>
  <resources>

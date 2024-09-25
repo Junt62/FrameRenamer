@@ -7,7 +7,7 @@ from PIL import Image
 
 from FrameRenamer_ui import Ui_Form
 
-title = "序列帧重命名工具v1.1.1.3@zijun"
+title = "序列帧重命名工具v1.2.0.0@zijun"
 previewText = "重命名预览.txt"
 backupFolder = "backup"
 backupSuffix = "_备份"
@@ -61,7 +61,20 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
             self.images = self.toolPackage.findImages(self.path)
             self.images = sorted(self.images, key=self.toolPackage.sortImages)
             self.toolPackage.renameImages(self.path, self.images)
-            self.toolPackage.tint("执行重命名完成！")
+            self.toolPackage.tint("执行标准重命名完成！")
+
+            self.updateLineEdit2()
+            self.updateLineEdit3()
+            self.toolPackage.generatePreviewText(self.path, self.images)
+        else:
+            self.toolPackage.tint("未设置目标路径！")
+
+    def pressedPushButton1(self):
+        if self.lineEdit.text().strip():
+            self.images = self.toolPackage.findImages(self.path)
+            self.images = sorted(self.images, key=self.toolPackage.sortImages)
+            self.toolPackage.renameImages5(self.path, self.images)
+            self.toolPackage.tint("执行空白重命名完成！")
 
             self.updateLineEdit2()
             self.updateLineEdit3()
@@ -95,9 +108,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
             else:
                 self.toolPackage.generateEmptyImagesFolder(600)
-                self.images = self.toolPackage.findImages(self.path)
-                self.images = sorted(self.images, key=self.toolPackage.sortImages)
-                self.toolPackage.renameImages5(self.path, self.images)
                 self.toolPackage.fillImages(self.path)
                 self.toolPackage.removeEmptyImagesFolder()
 
@@ -117,9 +127,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
 
             else:
                 self.toolPackage.generateEmptyImagesFolder(360)
-                self.images = self.toolPackage.findImages(self.path)
-                self.images = sorted(self.images, key=self.toolPackage.sortImages)
-                self.toolPackage.renameImages5(self.path, self.images)
                 self.toolPackage.fillImages(self.path)
                 self.toolPackage.removeEmptyImagesFolder()
 
