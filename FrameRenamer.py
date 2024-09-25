@@ -26,6 +26,7 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         self.pushButton_5.pressed.connect(self.pressedPushButton5)
         self.pushButton_6.pressed.connect(self.pressedPushButton6)
         self.pushButton_7.pressed.connect(self.pressedPushButton7)
+        self.pushButton_8.pressed.connect(self.pressedPushButton8)
         self.checkBox.stateChanged.connect(self.checkBoxChanged)
 
         self.toolPackage = ToolPackage(self)
