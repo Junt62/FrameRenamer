@@ -7,7 +7,7 @@ from PIL import Image
 
 from FrameRenamer_ui import Ui_Form
 
-title = "序列帧重命名工具v1.2.0.0@zijun"
+title = "序列帧重命名工具v1.2.0.1@zijun"
 previewText = "重命名预览.txt"
 backupFolder = "backup"
 backupSuffix = "_备份"
