@@ -7,7 +7,7 @@ from PIL import Image
 
 from FrameRenamer_ui import Ui_Form
 
-title = "序列帧重命名工具v1.2.0.2@zijun"
+title = "序列帧重命名工具v1.3.0.0@zijun"
 previewText = "重命名预览.txt"
 backupFolder = "backup"
 backupSuffix = "_备份"
@@ -26,7 +26,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         self.pushButton_5.pressed.connect(self.pressedPushButton5)
         self.pushButton_6.pressed.connect(self.pressedPushButton6)
         self.pushButton_7.pressed.connect(self.pressedPushButton7)
-        self.pushButton_8.pressed.connect(self.pressedPushButton8)
         self.checkBox.stateChanged.connect(self.checkBoxChanged)
 
         self.toolPackage = ToolPackage(self)
@@ -70,19 +69,6 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
         else:
             self.toolPackage.tint("未设置目标路径！")
 
-    def pressedPushButton8(self):
-        if self.lineEdit.text().strip():
-            self.images = self.toolPackage.findImages(self.path)
-            self.images = sorted(self.images, key=self.toolPackage.sortImages)
-            self.toolPackage.renameImages5(self.path, self.images)
-            self.toolPackage.tint("执行空白重命名完成！")
-
-            self.updateLineEdit2()
-            self.updateLineEdit3()
-            self.toolPackage.generatePreviewText(self.path, self.images)
-        else:
-            self.toolPackage.tint("未设置目标路径！")
-
     def pressedPushButton2(self):
         path = os.path.join(os.path.dirname(__file__), previewText)
         if os.path.exists(path):
@@ -108,9 +94,7 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
                 self.toolPackage.tint("文件夹中图片大于600张，请检查文件夹")
 
             else:
-                self.toolPackage.generateEmptyImagesFolder(600)
-                self.toolPackage.fillImages(self.path)
-                self.toolPackage.removeEmptyImagesFolder()
+                self.toolPackage.fillImages(self.path, 600)
 
                 self.updateLineEdit2()
                 self.updateLineEdit3()
@@ -127,9 +111,7 @@ class MainForm(QtWidgets.QMainWindow, Ui_Form):
                 self.toolPackage.tint("文件夹中图片大于360张，请检查文件夹")
 
             else:
-                self.toolPackage.generateEmptyImagesFolder(360)
-                self.toolPackage.fillImages(self.path)
-                self.toolPackage.removeEmptyImagesFolder()
+                self.toolPackage.fillImages(self.path, 360)
 
                 self.updateLineEdit2()
                 self.updateLineEdit3()
@@ -247,22 +229,29 @@ class ToolPackage:
 
         shutil.copytree(path, target)
 
-    def generateEmptyImagesFolder(self, frameCount: int):
+    def generateEmptyImagesFolder(self, frameCount, startFrame):
         path = os.path.join(os.path.dirname(__file__), backupFolder, "empty_frame")
         if not os.path.exists(path):
             os.makedirs(path)
 
         image = Image.new("RGBA", (1, 1), color=(255, 255, 255, 0))
-        imageEmpty = os.path.join(path, "00" + str(frameCount - 1) + ".png")
+        imageEmpty = os.path.join(path, startFrame)
         image.save(imageEmpty)
 
         for i in range(frameCount - 1):
-            name = f"{str(i).zfill(5)}.png"
+            i += 1
+            dot = startFrame.rfind(".")
+            suffix = startFrame[dot:]
+            prefix = startFrame[:dot]
+            prefix = int(prefix) + i
+            name = f"{str(prefix).zfill(len(startFrame[:dot]))}{suffix}"
             shutil.copy(imageEmpty, os.path.join(path, name))
 
-    def fillImages(self, imagesOriginAddr):
+    def fillImages(self, imagesOriginAddr, frameCount):
         imagesOrigin = self.findImages(imagesOriginAddr)
         imagesOrigin = sorted(imagesOrigin, key=self.sortImages)
+
+        self.generateEmptyImagesFolder(frameCount, imagesOrigin[0])
 
         imagesEmptyAddr = os.path.join(os.path.dirname(__file__), backupFolder)
         imagesEmptyAddr = os.path.join(imagesEmptyAddr, "empty_frame")
@@ -274,6 +263,8 @@ class ToolPackage:
 
             if not os.path.exists(imageOriginAddr):
                 shutil.copy2(imageEmptyAddr, imageOriginAddr)
+
+        self.removeEmptyImagesFolder()
 
     def removeEmptyImagesFolder(self):
         path = os.path.join(os.path.dirname(__file__), backupFolder, "empty_frame")
