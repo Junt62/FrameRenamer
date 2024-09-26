@@ -1,1 +1,1 @@
-﻿pyinstaller -Fw -i icon.ico -n 序列帧重命名工具v1.3.0.1 FrameRenamer.py
+﻿pyinstaller -Fw -i "src\icon.ico" -n 序列帧重命名工具v1.3.0.2 FrameRenamer.py

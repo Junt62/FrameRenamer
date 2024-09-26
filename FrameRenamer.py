@@ -5,9 +5,9 @@ import shutil
 from PySide6 import QtCore, QtWidgets, QtGui
 from PIL import Image
 
-from FrameRenamer_ui import Ui_Form
+from src.FrameRenamer_ui import Ui_Form
 
-title = "序列帧重命名工具v1.3.0.1@zijun"
+title = "序列帧重命名工具v1.3.0.2@zijun"
 previewText = "重命名预览.txt"
 backupFolder = "backup"
 backupSuffix = "_备份"
